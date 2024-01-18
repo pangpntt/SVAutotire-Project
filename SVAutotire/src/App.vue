@@ -4,9 +4,6 @@ import Sidebar from './components/Sidebar.vue'
 
 <template>
   <div id="app">
-    <header>
-      <Sidebar/>
-    </header>
     <router-view :key="$route.fullPath" />
   </div>
 </template>
