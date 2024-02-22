@@ -47,7 +47,13 @@
         searchItem: '',
         items: [
           { warehouse: 'SV', name: 'ล้อแม็ก', type: 'ล้อ', amount: '100', storage: 'A1' },
-          { warehouse: 'TN', name: 'ยางรถ', type: 'ยาง', amount: '200', storage: 'B5' },
+          { warehouse: 'TN', name: 'ยางรถ', type: 'ยาง', amount: '200', storage: 'B3' },
+          { warehouse: 'SV', name: 'ล้อแม็ก', type: 'ล้อ', amount: '100', storage: 'H5' },
+          { warehouse: 'SV', name: 'ล้อแม็ก', type: 'ล้อ', amount: '100', storage: 'A2' },
+          { warehouse: 'TN', name: 'ยางรถ', type: 'ยาง', amount: '200', storage: 'C4' },
+          { warehouse: 'SV', name: 'ล้อแม็ก', type: 'ล้อ', amount: '100', storage: 'D7' },
+          { warehouse: 'TN', name: 'ยางรถ', type: 'ยาง', amount: '200', storage: 'E3' },
+          { warehouse: 'TN', name: 'ยางรถ', type: 'ยาง', amount: '200', storage: 'A2' },
         ],
       };
     },

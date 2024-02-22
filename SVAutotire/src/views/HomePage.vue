@@ -19,7 +19,9 @@ import Modal from '@/components/Modal.vue';
         </div>
     </div>
 </template>
+
 <script>
+import axios from 'axios';
 export default {
     components: {
         Modal, Table
@@ -27,6 +29,7 @@ export default {
     data() {
     return {
       isModalOpen: false,
+      product: [],
     };
   },
   methods: {
