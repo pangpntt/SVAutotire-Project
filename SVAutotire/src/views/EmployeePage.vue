@@ -17,6 +17,7 @@
 <script>
 import Sidebar from '@/components/Sidebar.vue';
 import TableEmployee from '@/components/TableEmployee.vue';
+import axios from 'axios';
 export default {
     components: {
         Sidebar, TableEmployee
