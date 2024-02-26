@@ -4,13 +4,13 @@ import Dropdown from "primevue/dropdown";
 
 <template lang="html">
     <div class="relative overflow-x-auto sm:rounded-lg">
-      <div class="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white">
+      <div class="flex items-center justify-end md:space-y-0 pb-4 bg-white">
         <div class="mt-2">
           <select aria-label="เลือกคลังสินค้า" v-model="currentWarehouse" class="text-black bg-white border border-gray-200 hover:bg-gray-100 hover:text-emerald-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">
-          <option selected value="All">คลังสินค้า</option>
-          <option value="SV">SV</option>
-          <option value="TN">TN</option>
-        </select>
+            <option selected value="All">คลังสินค้า</option>
+            <option value="SV">SV</option>
+            <option value="TN">TN</option>
+          </select>
         </div>
         <div class="relative">
           <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">

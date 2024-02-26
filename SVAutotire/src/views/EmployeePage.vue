@@ -1,27 +1,26 @@
-<script setup>
-import Sidebar from '@/components/Sidebar.vue';
-import Table from '@/components/TableCustomer.vue'
-import Modal from '@/components/Modal.vue';
-</script>
+
 <template lang="">
     <header>
         <Sidebar/>
     </header>
     <div class="p-4 sm:ml-64">
         <p class="text-2xl text-black font-semibold pb-5 pt-5">ข้อมูลพนักงาน</p>
-        <div>
-            <button @click="openModal" class="bg-emerald-500 text-white px-4 py-2 rounded-md">เพิ่มข้อมูลลูกค้า</button>
-            <Modal :isOpen="isModalOpen" title="เพิ่มสินค้า" @close="closeModal"></Modal>
-        </div>
-        <div >
-            <Table v-if="!isModalOpen"/>
+        <router-link to="/employee/add" class="items-center p-3 border-solid rounded-md bg-emerald-500 text-white text-sm">
+            <span>เพิ่มข้อมูลพนักงาน</span>
+        </router-link>
+        <div class="mt-5">
+            <TableEmployee />
         </div>
     </div>
 
 </template>
 <script>
+import Sidebar from '@/components/Sidebar.vue';
+import TableEmployee from '@/components/TableEmployee.vue';
 export default {
-    
+    components: {
+        Sidebar, TableEmployee
+    }
 }
 </script>
 <style lang="">
