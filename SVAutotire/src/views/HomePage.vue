@@ -6,19 +6,19 @@
         <p class="text-2xl text-black font-semibold pb-5 pt-5 mb-5">สินค้าทั้งหมด</p>
         <DialogProduct />
         <div class="mt-5">
-            <DataTableProduct />
+            <TableProduct />
         </div>
     </div>
 </template>
 
 <script>
 import Sidebar from '@/components/Sidebar.vue';
-import DataTableProduct from '@/components/DataTableProduct.vue'
+import TableProduct from '@/components/TableProduct.vue';
 import DialogProduct from '@/components/DialogProduct.vue';
 
 export default {
     components: {
-        DataTableProduct,Sidebar,DialogProduct
+        Sidebar,DialogProduct,TableProduct
     }
 }
 </script>
