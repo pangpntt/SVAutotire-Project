@@ -27,28 +27,31 @@
             <td class="px-7 py-4">
               {{ item.fname }}
               <div v-if="editMode && index === editItemIndex">
-                <input v-model="editedItem[key]" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
+                <input v-model="editedItem.fname" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
               </div>
               <div v-else class="font-normal text-gray-500">{{ value }}</div>
             </td>
+
             <td class="px-7 py-4">
               {{ item.lname }}
               <div v-if="editMode && index === editItemIndex">
-                <input v-model="editedItem[key]" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
+                <input v-model="editedItem.lname" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
               </div>
               <div v-else class="font-normal text-gray-500">{{ value }}</div>
             </td>
+
             <td class="px-7 py-4">
               {{ item.tel }}
               <div v-if="editMode && index === editItemIndex">
-                <input v-model="editedItem[key]" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
+                <input v-model="editedItem.tel" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
               </div>
               <div v-else class="font-normal text-gray-500">{{ value }}</div>
             </td>
+
             <td class="px-7 py-4">
               {{ item.role }}
               <div v-if="editMode && index === editItemIndex">
-                <input v-model="editedItem[key]" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
+                <input v-model="editedItem.role" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
               </div>
               <div v-else class="font-normal text-gray-500">{{ value }}</div>
             </td>
@@ -57,9 +60,11 @@
               <a v-if="!editMode" @click="editItem(index)" href="#" class="font-medium text-blue-600 hover:underline">แก้ไข</a>
               <a v-else @click="saveItem(index)" href="#" class="font-medium text-green-600 hover:underline">บันทึก</a>
             </td>
+
             <td class="px-7 py-4">
               <a v-if="!editMode" @click="deleteItem(index)" href="#" class="font-medium text-red-600 hover:underline">ลบ</a>
             </td>
+
           </tr>
         </tbody>
       </table>
@@ -91,11 +96,19 @@
         this.editItemIndex = index;
         this.editedItem = { ...this.items[index] };
       },
-      saveItem(index) {
+      
+      async saveItem(index) {
         this.items[index] = { ...this.editedItem };
+        try {
+          const res = await axios.put(`http://localhost:3000/employee/edit/${this.items[index].ID}`, this.editedItem);
+          console.log(res.status);
+        } 
+        catch (error) {
+          console.error(error);
+        }
         this.editMode = false;
         this.editItemIndex = null;
-        this.editedItem = {};
+        this.editedItem = {};      
       },
 
       async deleteItem(index) {
