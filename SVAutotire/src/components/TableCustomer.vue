@@ -1,7 +1,6 @@
 <template lang="html">
-    <div class="relative overflow-x-auto sm:rounded-lg">
-      <div class="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white">
-
+    <div class="">
+      <div class="flex items-center justify-end pb-4 bg-white">
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
           <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">

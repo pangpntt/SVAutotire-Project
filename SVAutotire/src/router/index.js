@@ -10,9 +10,14 @@ const router = createRouter({
       component: () => import('../views/LogInPage.vue')
     },
     {
-      path: '/Home',
-      name: 'home',
+      path: '/product',
+      name: 'product',
       component: () => import('../views/HomePage.vue')
+    },
+    {
+      path: '/product/add',
+      name: 'AddProduct',
+      component: () => import('../views/AddProductPage.vue')
     },
     {
       path: '/Warehouse',
@@ -20,10 +25,16 @@ const router = createRouter({
       component: () => import('../views/WarehousePage.vue')
     },
     {
-      path: '/Customer',
+      path: '/customer',
       name: 'customer',
       component: () => import('../views/CustomerPage.vue')
     },
+    {
+      path: '/customer/add',
+      name: 'AddCustomer',
+      component: () => import('../views/AddCustomerPage.vue')
+    },
+
     {
       path: '/employee',
       name: 'employee',
