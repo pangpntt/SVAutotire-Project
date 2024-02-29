@@ -23,13 +23,36 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b" v-for="(item, index) in filteredItems" :key="index">
-            <td v-for="(value, key) in item" :key="key" class="px-7 py-4">
+          <tr class="bg-white border-b" v-for="(item, index) in filteredItems" :key="index" value="item.ID">
+            <td class="px-7 py-4">
+              {{ item.fname }}
               <div v-if="editMode && index === editItemIndex">
-                <input v-model="editedItem[key]" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
+                <input v-model="editedItem.fname" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
               </div>
               <div v-else class="font-normal text-gray-500">{{ value }}</div>
             </td>
+            <td class="px-7 py-4">
+              {{ item.lname }}
+              <div v-if="editMode && index === editItemIndex">
+                <input v-model="editedItem.lname" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
+              </div>
+              <div v-else class="font-normal text-gray-500">{{ value }}</div>
+            </td>
+            <td class="px-7 py-4">
+              {{ item.mile }}
+              <div v-if="editMode && index === editItemIndex">
+                <input v-model="editedItem.mile" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
+              </div>
+              <div v-else class="font-normal text-gray-500">{{ value }}</div>
+            </td>
+            <td class="px-7 py-4">
+              {{ item.licensePlate }}
+              <div v-if="editMode && index === editItemIndex">
+                <input v-model="editedItem.licensePlate" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
+              </div>
+              <div v-else class="font-normal text-gray-500">{{ value }}</div>
+            </td>
+
             <td class="px-7 py-4">
               <a v-if="!editMode" @click="editItem(index)" href="#" class="font-medium text-blue-600 hover:underline">แก้ไข</a>
               <a v-else @click="saveItem(index)" href="#" class="font-medium text-green-600 hover:underline">บันทึก</a>
@@ -44,6 +67,7 @@
   </template>
   
   <script>
+import axios from 'axios';
   export default {
     data() {
       return {
@@ -51,10 +75,7 @@
         editMode: false,
         editItemIndex: null,
         editedItem: {},
-        items: [
-          { fname: 'พัณณิตา', name: 'สายศร', type: '20000', amount: '1กศ 7746' },
-          { fname: 'อาชัญ', name: 'พลานุพัฒน์', type: '35000', amount: 'ธม 2345' },
-        ],
+        items: [],
       };
     },
     computed: {
@@ -70,16 +91,31 @@
         this.editItemIndex = index;
         this.editedItem = { ...this.items[index] };
       },
-      saveItem(index) {
+      async saveItem(index) {
         this.items[index] = { ...this.editedItem };
+        try {
+          await axios.put(`http://localhost:3000/customer/edit/${this.items[index].ID}`, this.editedItem)
+        }
+        catch (error) {
+          console.log(error)
+        }
         this.editMode = false;
         this.editItemIndex = null;
         this.editedItem = {};
       },
-      deleteItem(index) {
+      async deleteItem(index) {
+        await axios.delete(`http://localhost:3000/customer/delete/${this.items[index].ID}`)
         this.items.splice(index, 1);
       },
-    }, 
+      async getCustomer() {
+        const cusData = await axios.get('http://localhost:3000/customer/all')
+        console.log(cusData)
+        this.items = cusData.data.data
+      }
+    },
+    async mounted() {
+      await this.getCustomer()
+    }
   }
   </script>
   

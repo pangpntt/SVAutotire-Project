@@ -45,7 +45,7 @@
                     md="6"
                     >
                     <v-text-field
-                        v-model="form.car"
+                        v-model="form.licensePlate"
                         label="ป้ายทะเบียน"
                     ></v-text-field>
                     </v-col>
@@ -74,29 +74,29 @@ export default {
             fname: '',
             lname: '',
             mile: '',
-            car: '',
+            licensePlate: '',
         }
     }
   },
-//   methods: {
-//     submit() {
-//         axios.post('http://localhost:3000/employee',{
-//             fname: this.form.fname,
-//             lname: this.form.lname,
-//             mile: this.form.mile,
-//             car: this.form.car,
-//         })
-//         .then((res) => {
-//             console.log(res.status)
-//         })
-//         .catch((error) => {
-//             console.log(error.status)
-//         })
-//         .finally(() => {
-//             this.fname = ''
-//         })
-//     }
-//   }
+  methods: {
+    submit() {
+        axios.post('http://localhost:3000/customer',{
+            fname: this.form.fname,
+            lname: this.form.lname,
+            mile: this.form.mile,
+            licensePlate: this.form.licensePlate,
+        })
+        .then((res) => {
+            console.log(res.status)
+        })
+        .catch((error) => {
+            console.log(error.status)
+        })
+        .finally(() => {
+            this.fname = ''
+        })
+    }
+  }
 };
 </script>
 <style lang="">
