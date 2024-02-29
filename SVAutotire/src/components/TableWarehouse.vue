@@ -1,10 +1,8 @@
 <template lang="html">
     <div class="relative overflow-x-auto sm:rounded-lg">
-      <div class="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white">
+      <div class="flex items-center justify-end pb-4 bg-white">
         <div class="mt-2">
-          <button type="button" @click="filterByWarehouse('All')" class="text-black bg-white border border-gray-200 hover:bg-gray-100 hover:text-emerald-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">ทัังหมด</button>
-          <button type="button" @click="filterByWarehouse('SV')" class="text-black bg-white border border-gray-200 hover:bg-gray-100 hover:text-emerald-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">SV</button>
-          <button type="button" @click="filterByWarehouse('TN')" class="text-black bg-white border border-gray-200 hover:bg-gray-100 hover:text-emerald-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">TN</button>
+          <v-select label="เลือกคลังสินค้า" v-model="currentWarehouse" :items="['All', 'TN', 'SV']"></v-select>
         </div>
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
