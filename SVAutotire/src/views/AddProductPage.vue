@@ -7,10 +7,13 @@
         <form action="">
             <v-container>
                 <v-row>
-                    <v-col col="12" md="6">
+                    <v-col col="12" md="4">
+                        <v-text-field label="รหัสสินค้า"></v-text-field>
+                    </v-col>
+                    <v-col col="12" md="4">
                         <v-text-field label="ชื่อสินค้า"></v-text-field>
                     </v-col>
-                    <v-col col="12" md="6">
+                    <v-col col="12" md="4">
                         <v-select label="ชนิดสินค้า" :items="['ล้อ', 'ยาง']"></v-select>
                     </v-col>
                     <v-col col="12" md="6">

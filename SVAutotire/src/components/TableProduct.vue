@@ -19,7 +19,7 @@ import Dropdown from "primevue/dropdown";
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
           </div>
-          <input v-model="searchItemName" type="text" id="table-search-users" class="block p-2 ps-10 mx-4 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50" placeholder="ค้นหาชื่อสินค้า">
+          <input v-model="searchItemName" type="text" id="table-search-users" class="block p-2 ps-10 mx-4 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50" placeholder="ค้นหารหัสสินค้า">
         </div>
 
       </div>
@@ -27,6 +27,7 @@ import Dropdown from "primevue/dropdown";
         <thead class="text-base text-gray-700 uppercase bg-gray-100 ">
           <tr>
             <th scope="col" class="px-6 py-3 font-bold">คลังสินค้า</th>
+            <th scope="col" class="px-6 py-3 font-bold">รหัสสินค้า</th>
             <th scope="col" class="px-6 py-3 font-bold">สินค้า</th>
             <th scope="col" class="px-6 py-3 font-bold">ชนิดสินค้า</th>
             <th scope="col" class="px-6 py-3 font-bold">จำนวน</th>
@@ -69,6 +70,7 @@ export default {
       items: [
         {
           warehouse: "SV",
+          id: 'A123',
           name: "ล้อแม็ก",
           type: "ล้อ",
           amount: "100",
@@ -76,6 +78,7 @@ export default {
         },
         {
           warehouse: "TN",
+          id: 'A123',
           name: "ยางรถ",
           type: "ยาง",
           amount: "200",
@@ -83,6 +86,7 @@ export default {
         },
         {
           warehouse: "SV",
+          id: 'A123',
           name: "ล้อแม็ก",
           type: "ล้อ",
           amount: "100",
@@ -90,6 +94,7 @@ export default {
         },
         {
           warehouse: "SV",
+          id: 'A123',
           name: "ล้อแม็ก",
           type: "ล้อ",
           amount: "100",
@@ -97,6 +102,7 @@ export default {
         },
         {
           warehouse: "TN",
+          id: 'A123',
           name: "ยางรถ",
           type: "ยาง",
           amount: "200",
@@ -104,6 +110,7 @@ export default {
         },
         {
           warehouse: "SV",
+          id: 'A123',
           name: "ล้อแม็ก",
           type: "ล้อ",
           amount: "100",
@@ -111,6 +118,7 @@ export default {
         },
         {
           warehouse: "TN",
+          id: 'A123',
           name: "ยางรถ",
           type: "ยาง",
           amount: "200",
@@ -118,6 +126,7 @@ export default {
         },
         {
           warehouse: "TN",
+          id: 'A123',
           name: "ยางรถ",
           type: "ยาง",
           amount: "200",
@@ -135,7 +144,7 @@ export default {
               item.warehouse.toLowerCase().includes(this.searchItem.toLowerCase())
           )
         : this.items.filter((item) =>
-            item.warehouse.toLowerCase().includes(this.searchItem.toLowerCase()) && item.name.toLowerCase().includes(this.searchItemName.toLowerCase())
+            item.warehouse.toLowerCase().includes(this.searchItem.toLowerCase()) && item.id.toLowerCase().includes(this.searchItemName.toLowerCase())
           );
     },
   },
