@@ -1,25 +1,60 @@
-<script setup>
-import Sidebar from '@/components/Sidebar.vue';
-import Table from '@/components/TableWarehouse.vue'
-</script>
+
 <template lang="">
     <header>
         <Sidebar/>
     </header>
     <div class="p-4 sm:ml-64">
         <p class="text-2xl text-black font-semibold pb-5 pt-5">คลังสินค้า</p>
-        <div >
-            <Table/>
+        <router-link to="/warehouse/manage" class="items-center p-3 mb-5 border-solid rounded-md bg-emerald-500 text-white text-sm">
+            <span>จัดการคลังสินค้า</span>
+        </router-link>
+        <div class="grid grid-cols-2 gap-4 place-content-stretch h-48 mt-5 mb-5">
+            <div class="border border-sky-500 rounded-md text-center">
+                <div>
+                    <p>สินค้าทั้งหมด</p>
+                    <p>400</p>
+                    <p>ชิ้น</p>
+                </div>
+            </div>
+            <div class="border border-sky-500 rounded-md text-center" v-for="(item, index) in items" :key="index">
+                <div>
+                    <p>{{item.warehouse}}</p>
+                    <p>{{item.amount}}</p>
+                    <p>ชิ้น</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <TableWarehouse />
         </div>
     </div>
 
 </template>
 <script>
+import Sidebar from '@/components/Sidebar.vue';
+import TableWarehouse from '@/components/TableProductWarehouse.vue';
 export default {
     components: {
-        Table
-    }
-    
+        Sidebar, TableWarehouse
+    },
+    data() {
+        return {
+            items: [
+                {
+                    warehouse: 'SV',
+                    amount: '100'
+                },
+                {
+                    warehouse: 'TN',
+                    amount: '200'
+                },
+                {
+                    warehouse: 'โชว์',
+                    amount: '100'
+                }
+            ]
+        };
+    }    
 }
 </script>
 <style lang="">
