@@ -64,6 +64,11 @@ const router = createRouter({
       path: '/order/add',
       name: 'AddOrder',
       component: () => import('../views/AddOrderPage.vue')
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: () => import('../views/HistoryPage.vue')
     }
   ]
 })
