@@ -38,7 +38,6 @@ export default {
     data() {
     return {
       selectedOption: null,
-      storage: '',
       textFields: [''],
       items: [],
     };

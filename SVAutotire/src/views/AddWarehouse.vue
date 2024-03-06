@@ -16,7 +16,10 @@
                         <input type="radio" id="option2" value="option2" v-model="selectedOption">
                         <label for="option2" class="ml-2">ไม่เพิ่ม</label>                    </v-col>
                     <v-col col="12" md="12" v-if="selectedOption === 'option1'">
-                        <v-text-field label="ที่เก็บ" v-model="textFieldValue1"></v-text-field>
+                        <v-col v-for="(textField, index) in textFields" :key="index" col="12" md="12">
+                            <v-text-field label="ที่เก็บ" v-model="textFields[index]"></v-text-field>
+                        </v-col>
+                        <v-btn density="compact" icon="mdi-plus" @click="addTextField"></v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -29,41 +32,43 @@
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar.vue';
-import axios from 'axios';
+import Sidebar from "@/components/Sidebar.vue";
+import axios from "axios";
 export default {
-    components: {
-        Sidebar
-    },
-    data() {
+  components: {
+    Sidebar,
+  },
+  data() {
     return {
       selectedOption: null,
-      textFieldValue1: '',
-      textFieldValue2: '',
+      textFields: [""],
       form: {
-        name: ''
-      }
+        name: "",
+      },
     };
   },
   methods: {
     submit() {
-        axios.post('http://localhost:3000/warehouse', {
-            name: this.form.name
+      axios
+        .post("http://localhost:3000/warehouse", {
+          name: this.form.name,
         })
         .then((res) => {
-            console.log(res.status)
+          console.log(res.status);
         })
         .catch((error) => {
-            console.log(error.status)
+          console.log(error.status);
         })
         .finally(() => {
-            this.form.name = ''
-        })
+          this.form.name = "";
+        });
+    },
+    addTextField() {
+            this.textFields.push('');
     }
-  }
-}
+  },
+};
 </script>
 
 <style>
-
 </style>
