@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import('../views/ManageWarehousePage.vue')
     },
     {
+      path: '/warehouse/storage',
+      name: 'AddStorage',
+      component: () => import('../views/AddStorsgePage.vue')
+    },
+    {
       path: '/customer',
       name: 'customer',
       component: () => import('../views/CustomerPage.vue')
