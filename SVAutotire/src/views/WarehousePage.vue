@@ -23,20 +23,15 @@
                     <p>ชิ้น</p>
                 </div>
             </div>
-        </div>
-        <div>
-            <TableWarehouse />
-        </div>
-    </div>
+        </div>    </div>
 
 </template>
 <script>
 import Sidebar from '@/components/Sidebar.vue';
-import TableWarehouse from '@/components/TableProductWarehouse.vue';
 import axios from 'axios';
 export default {
     components: {
-        Sidebar, TableWarehouse
+        Sidebar
     },
     data() {
         return {
