@@ -4,11 +4,11 @@
   </header>
   <div class="p-4 sm:ml-64">
         <p class="text-2xl text-black font-semibold pb-5 pt-5">เพิ่มคลังสินค้า</p>
-        <form action="">
+        <form v-on:submit.prevent="submit">
             <v-container>
                 <v-row>
                     <v-col col="12" md="12">
-                        <v-text-field label="ชื่อคลังสินค้า"></v-text-field>
+                        <v-text-field label="ชื่อคลังสินค้า" v-model="form.name"></v-text-field>
                     </v-col>
                     <v-col>
                         <input type="radio" id="option1" value="option1" v-model="selectedOption">
@@ -30,6 +30,7 @@
 
 <script>
 import Sidebar from '@/components/Sidebar.vue';
+import axios from 'axios';
 export default {
     components: {
         Sidebar
@@ -38,8 +39,27 @@ export default {
     return {
       selectedOption: null,
       textFieldValue1: '',
-      textFieldValue2: ''
+      textFieldValue2: '',
+      form: {
+        name: ''
+      }
     };
+  },
+  methods: {
+    submit() {
+        axios.post('http://localhost:3000/warehouse', {
+            name: this.form.name
+        })
+        .then((res) => {
+            console.log(res.status)
+        })
+        .catch((error) => {
+            console.log(error.status)
+        })
+        .finally(() => {
+            this.name = ''
+        })
+    }
   }
 }
 </script>
