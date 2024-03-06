@@ -12,13 +12,13 @@
             <div class="border border-sky-500 rounded-md text-center">
                 <div>
                     <p>สินค้าทั้งหมด</p>
-                    <p>400</p>
+                    <p>{{}}</p>
                     <p>ชิ้น</p>
                 </div>
             </div>
-            <div class="border border-sky-500 rounded-md text-center" v-for="(item, index) in items" :key="index">
+            <div class="border border-sky-500 rounded-md text-center" v-for="(item, index) in items" :key="index" value="item.ID">
                 <div>
-                    <p>{{item.warehouse}}</p>
+                    <p>{{item.name}}</p>
                     <p>{{item.amount}}</p>
                     <p>ชิ้น</p>
                 </div>
@@ -33,28 +33,27 @@
 <script>
 import Sidebar from '@/components/Sidebar.vue';
 import TableWarehouse from '@/components/TableProductWarehouse.vue';
+import axios from 'axios';
 export default {
     components: {
         Sidebar, TableWarehouse
     },
     data() {
         return {
-            items: [
-                {
-                    warehouse: 'SV',
-                    amount: '100'
-                },
-                {
-                    warehouse: 'TN',
-                    amount: '200'
-                },
-                {
-                    warehouse: 'โชว์',
-                    amount: '100'
-                }
-            ]
+            items: []
         };
-    }    
+    },
+    methods: {
+        async getWarehouse() {
+            const warehouse = await axios.get('http://localhost:3000/warehouse/all')
+            console.log(warehouse.data.data.Items[0])
+            this.items = warehouse.data.data.Items
+        }
+    },
+    async mounted() {
+      await this.getWarehouse()
+    }
+ 
 }
 </script>
 <style lang="">
