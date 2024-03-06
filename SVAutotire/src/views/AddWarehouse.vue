@@ -57,7 +57,7 @@ export default {
             console.log(error.status)
         })
         .finally(() => {
-            this.name = ''
+            this.form.name = ''
         })
     }
   }
