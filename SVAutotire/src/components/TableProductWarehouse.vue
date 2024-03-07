@@ -21,13 +21,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b" v-for="(item, index) in items" :key="index" value="item.ID">
+          <tr class="bg-white border-b" v-for="(item, index) in filteredItems" :key="index" value="item.ID">
             <td class="px-7 py-4">
               <div class="font-normal text-gray-500">{{ item.name }}</div>
             </td>
-            <!-- <td v-for="(storage, index) in item.storage" :key="index" value="storage.ID" class="px-7 py-4">
-              <div class="font-normal text-gray-500">{{ storage.name }}</div>
-            </td> -->
             <td class="px-7 py-4">
               <div class="font-normal text-gray-500" v-for="(storage, index) in item.storage" :key="index">
                 {{ storage.name }}
@@ -43,24 +40,18 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      currentWarehouse: null,
       searchItem: "",
-      searchItemName: '',
-      editMode: false,
-      editItemIndex: null,
-      editedItem: {},
       items: [],
     };
   },
   computed: {
     filteredItems() {
-      return this.items.filter(item => {
-        !item.name.toLowerCase().includes(this.searchItem.toLowerCase()) &&
-        !item.storage.some(storage => storage.name.toLowerCase().includes(this.searchItem.toLowerCase()))
+      return this.items.filter(item =>{
+        return item.name.toLowerCase().includes(this.searchItem.toLowerCase())
+      })
+  }
 
-  });
-}
-},
+} ,
   methods: {
     async getWarehouse() {
       const warehouse = await axios.get('http://localhost:3000/warehouse/all')
