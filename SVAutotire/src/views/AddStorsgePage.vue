@@ -8,7 +8,7 @@
             <v-container>
                 <v-row>
                     <v-col col="12" md="12">
-                        <v-select label="ชื่อคลังสินค้า" :items="items.map(item => item.name)"></v-select>
+                        <v-select label="ชื่อคลังสินค้า" :items="items.map(item => item.name)" return-object v-model="selectValue"></v-select>
                     </v-col>
                     <v-col v-for="(textField, index) in textFields" :key="index" col="12" md="12">
                         <v-text-field label="ที่เก็บ" v-model="textFields[index]"></v-text-field>
@@ -40,20 +40,37 @@ export default {
       selectedOption: null,
       textFields: [''],
       items: [],
+      form: {
+        storage: []
+      },
+      selectValue: ''
     };
   },
   methods: {
         async getWarehouse() {
             const warehouse = await axios.get('http://localhost:3000/warehouse/all')
-            console.log(warehouse.data.data.Items[0])
+            // console.log(warehouse.data.data.Items[0])
             this.items = warehouse.data.data.Items
         },
         addTextField() {
             this.textFields.push('');
         },
+        async submit(){
+            var select = (await this.items.filter((item) => item.name == this.selectValue))[0];
+            var storage = [];
+            for(let i=0; i<this.textFields.length; i++){
+                storage[i] = {
+                    name: this.textFields[i]
+                }
+            }
+            await axios.post(`http://localhost:3000/warehouse/storage/${select.ID}`, {
+               storage: storage
+            })
+
+        }
     },
     async mounted() {
-      await this.getWarehouse()
+      await this.getWarehouse();
     }
 }
 </script>
