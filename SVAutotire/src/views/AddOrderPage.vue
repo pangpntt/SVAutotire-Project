@@ -4,23 +4,19 @@
     </header>
     <div class="p-4 sm:ml-64">
         <p class="text-2xl text-black font-semibold pb-5 pt-5">เพิ่มคำสั่งซื้อ</p>
-        <form action="">
+        <form v-on:submit.prevent="submit">
             <v-container>
                 <v-row>
-                    <v-col col="12" md="4">
+                    <v-col col="12" md="12">
                         <v-text-field type="date" label="วันที่"></v-text-field>
                     </v-col>
-                    <v-col col="12" md="4">
-                        <v-text-field label="รหัสสินค้า"></v-text-field>
+                    <v-col v-for="(textField, index) in textFields" :key="index" col="12" md="12">
+                        <v-text-field label="ที่เก็บ" v-model="textFields[index].storage"></v-text-field>
+                        <v-text-field label="ราคา" v-model="textFields[index].price"></v-text-field>
+                        <v-text-field label="จำนวน" v-model="textFields[index].quantity"></v-text-field>
                     </v-col>
-                    <v-col col="12" md="4">
-                        <v-text-field label="ชื่อสินค้า"></v-text-field>
-                    </v-col>
-                    <v-col col="12" md="4">
-                        <v-text-field label="จำนวน"></v-text-field>
-                    </v-col>
-                    <v-col col="12" md="4">
-                        <v-text-field label="ราคา"></v-text-field>
+                    <v-col col="12" md="12">
+                        <v-btn density="compact" icon="mdi-plus" @click="addTextField"></v-btn>
                     </v-col>
                     <v-col col="12" md="6">
                         <input type="radio" id="oldCus" value="oldCus" v-model="selectedOption">
@@ -33,7 +29,6 @@
                         label="ชื่อลูกค้า"
                         :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
                         ></v-select>
-                        <v-text-field label="พนักงานขาย" v-model="textFieldValue1"></v-text-field>
                         <v-textarea label="หมายเหตุ"></v-textarea>
                     </v-col>
                     <v-col col="12" md="12" v-if="selectedOption === 'newCus'">
@@ -41,7 +36,6 @@
                         <v-text-field label="นามสกุล"></v-text-field>
                         <v-text-field label="จำนวนไมล์"></v-text-field>
                         <v-text-field label="ป้ายทะเบียน"></v-text-field>
-                        <v-text-field label="พนักงานขาย"></v-text-field>
                         <v-textarea label="หมายเหตุ"></v-textarea>
                     </v-col>
                 </v-row>
@@ -63,9 +57,13 @@ export default {
     data() {
     return {
       selectedOption: null,
-      textFieldValue1: '',
-      textFieldValue2: ''
+      textFields: [{ storage: '', price: '', quantity: '' }],
     };
+  },
+  methods: {
+    addTextField() {
+        this.textFields.push({ storage: '', price: '', quantity: '' });
+    }
   }
 }
 </script>

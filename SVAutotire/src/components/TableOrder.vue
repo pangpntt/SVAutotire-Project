@@ -22,13 +22,11 @@
       <table class="w-full text-left rtl:text-right text-gray-500 mt-10">
         <thead class="text-base text-gray-700 uppercase bg-gray-100 ">
           <tr>
-            <th scope="col" class="px-6 py-3 font-bold">หมายเลขคำสั่งซื้อ</th>
             <th scope="col" class="px-6 py-3 font-bold">ลูกค้า</th>
+            <th scope="col" class="px-6 py-3 font-bold">วันที่</th>
             <th scope="col" class="px-6 py-3 font-bold">รหัสสินค้า</th>
-            <th scope="col" class="px-6 py-3 font-bold">สินค้า</th>
             <th scope="col" class="px-6 py-3 font-bold">จำนวน</th>
-            <th scope="col" class="px-6 py-3 font-bold"></th>
-            <th scope="col" class="px-6 py-3 font-bold"></th>
+            <th scope="col" class="px-6 py-3 font-bold">หมายเหตุ</th>
           </tr>
         </thead>
         <tbody>
@@ -38,13 +36,6 @@
                 <input v-model="editedItem[key]" class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-24" :placeholder="key">
               </div>
               <div v-else class="font-normal text-gray-500">{{ value }}</div>
-            </td>
-            <td class="px-7 py-4">
-              <a v-if="!editMode" @click="editItem(index)" href="#" class="font-medium text-blue-600 hover:underline">แก้ไข</a>
-              <a v-else @click="saveItem(index)" href="#" class="font-medium text-green-600 hover:underline">บันทึก</a>
-            </td>
-            <td class="px-7 py-4">
-              <a v-if="!editMode" @click="deleteItem(index)" href="#" class="font-medium text-red-600 hover:underline">ลบ</a>
             </td>
           </tr>
         </tbody>
@@ -57,42 +48,9 @@
 export default {
     data() {
     return {
-      currentWarehouse: null,
       searchItem: "",
       searchItemName: '',
-      editMode: false,
-      editItemIndex: null,
-      editedItem: {},
-      items: [
-        {
-          orderID: "1002321",
-          customer: 'พัณณิตา',
-          productID: "ล้อแม็ก",
-          product: "ล้อ",
-          amount: "100",
-        },
-        {
-            orderID: "10024",
-            customer: 'พัณณิตา',
-            productID: "ล้อแม็ก",
-            product: "ล้อ",
-            amount: "100",
-        },
-        {
-            orderID: "1002321",
-          customer: 'พัณณิตา',
-          productID: "ล้อแม็ก",
-          product: "ล้อ",
-          amount: "100",
-        },
-        {
-            orderID: "1002321",
-          customer: 'พัณณิตา',
-          productID: "ล้อแม็ก",
-          product: "ล้อ", 
-          amount: "100",
-        }
-      ],
+      items: [],
     };
   },
   computed: {
