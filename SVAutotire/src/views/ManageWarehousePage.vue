@@ -87,7 +87,7 @@ export default {
     },
     async deleteItem(index) {
       try {
-        const deleteWh = await axios.delete(`http://localhost:3000/warehouse/delete/${this.items[index].ID}`)
+        const deleteWh = await axios.delete(`http://localhost:3000/warehouse/delete/${this.items[index].ID}`);
         this.items.splice(index, 1);
         return deleteWh.status
       } catch (error) {
@@ -95,8 +95,7 @@ export default {
       }
     },
     async getWarehouse() {
-      const warehouse = await axios.get('http://localhost:3000/warehouse/all')
-      console.log(warehouse.data.data.Items[0])
+      const warehouse = await axios.get('http://localhost:3000/warehouse/all');
       this.items = warehouse.data.data.Items
     }
   },

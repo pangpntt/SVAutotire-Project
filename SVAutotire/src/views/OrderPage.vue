@@ -9,6 +9,7 @@
         </router-link>
         <div>
             <TableOrder/>
+            
         </div>
     </div>
 </template>
@@ -19,10 +20,9 @@ import TableOrder from '@/components/TableOrder.vue';
 export default {
     components: {
         Sidebar, TableOrder
-    }
+    },
+
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
