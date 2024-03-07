@@ -9,14 +9,14 @@
             <span>จัดการคลังสินค้า</span>
         </router-link>
         <div class="grid grid-cols-2 gap-4 place-content-stretch h-48 mt-5 mb-5">
-            <div class="border border-sky-500 rounded-md text-center">
-                <div>
-                    <p>สินค้าทั้งหมด</p>
+            <div class="border-2 border-cyan-900 rounded-md text-center">
+                <div class="justify-center">
+                    <p class="text-base">สินค้าทั้งหมด</p>
                     <p>{{}}</p>
                     <p>ชิ้น</p>
                 </div>
             </div>
-            <div class="border border-sky-500 rounded-md text-center" v-for="(item, index) in items" :key="index" value="item.ID">
+            <div class="border-2 border-cyan-900 rounded-md text-center" v-for="(item, index) in items" :key="index" value="item.ID">
                 <div>
                     <p>{{item.name}}</p>
                     <p>{{item.amount}}</p>
