@@ -9,34 +9,29 @@
             <span>จัดการคลังสินค้า</span>
         </router-link>
         <div class="grid grid-cols-2 gap-4 place-content-stretch h-48 mt-5 mb-5">
-            <div class="border border-sky-500 rounded-md text-center">
-                <div>
-                    <p>สินค้าทั้งหมด</p>
+            <div class="border-2 border-cyan-900 rounded-md text-center">
+                <div class="justify-center">
+                    <p class="text-base">สินค้าทั้งหมด</p>
                     <p>{{}}</p>
                     <p>ชิ้น</p>
                 </div>
             </div>
-            <div class="border border-sky-500 rounded-md text-center" v-for="(item, index) in items" :key="index" value="item.ID">
+            <div class="border-2 border-cyan-900 rounded-md text-center" v-for="(item, index) in items" :key="index" value="item.ID">
                 <div>
                     <p>{{item.name}}</p>
                     <p>{{item.amount}}</p>
                     <p>ชิ้น</p>
                 </div>
             </div>
-        </div>
-        <div>
-            <TableWarehouse />
-        </div>
-    </div>
+        </div>    </div>
 
 </template>
 <script>
 import Sidebar from '@/components/Sidebar.vue';
-import TableWarehouse from '@/components/TableProductWarehouse.vue';
 import axios from 'axios';
 export default {
     components: {
-        Sidebar, TableWarehouse
+        Sidebar
     },
     data() {
         return {

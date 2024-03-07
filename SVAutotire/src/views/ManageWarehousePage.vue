@@ -7,7 +7,7 @@
         <router-link to="/warehouse/manage/add" class="items-center p-3 mb-5 mr-5 border-solid rounded-md bg-emerald-500 text-white text-sm">
             <span>เพิ่มคลังสินค้า</span>
         </router-link>
-        <router-link to="/warehouse/manage/add" class="items-center p-3 mb-5 border-solid rounded-md bg-emerald-500 text-white text-sm">
+        <router-link to="/warehouse/storage" class="items-center p-3 mb-5 border-solid rounded-md bg-emerald-500 text-white text-sm">
             <span>เพิ่มที่เก็บ</span>
         </router-link>
         <table class="w-9/12  text-left rtl:text-right text-gray-500 mt-5">
