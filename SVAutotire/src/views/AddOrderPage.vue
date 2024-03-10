@@ -8,12 +8,12 @@
             <v-container>
                 <v-row>
                     <v-col col="12" md="12">
-                        <v-text-field type="date" label="วันที่"></v-text-field>
+                        <v-text-field type="date" v-model="date" label="วันที่"></v-text-field>
                     </v-col>
                     <v-col v-for="(textField, index) in textFields" :key="index" col="12" md="12">
-                        <v-text-field label="ที่เก็บ" v-model="textFields[index].storage"></v-text-field>
+                        <v-text-field label="รหัสสินค้า" v-model="textFields[index].proID"></v-text-field>
                         <v-text-field label="ราคา" v-model="textFields[index].price"></v-text-field>
-                        <v-text-field label="จำนวน" v-model="textFields[index].quantity"></v-text-field>
+                        <v-text-field label="จำนวน" v-model="textFields[index].amount"></v-text-field>
                     </v-col>
                     <v-col col="12" md="12">
                         <v-btn density="compact" icon="mdi-plus" @click="addTextField"></v-btn>
@@ -26,17 +26,18 @@
                     </v-col>
                     <v-col col="12" md="12" v-if="selectedOption === 'oldCus'">
                         <v-select
-                        label="ชื่อลูกค้า"
-                        :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
+                            label="ชื่อลูกค้า"
+                            :items="oldCustomer.map(item => item.fname)"
+                            v-model="customerName"
                         ></v-select>
-                        <v-textarea label="หมายเหตุ"></v-textarea>
+                        <v-textarea label="หมายเหตุ" v-model="note"></v-textarea>
                     </v-col>
                     <v-col col="12" md="12" v-if="selectedOption === 'newCus'">
-                        <v-text-field label="ชื่อ"></v-text-field>
-                        <v-text-field label="นามสกุล"></v-text-field>
-                        <v-text-field label="จำนวนไมล์"></v-text-field>
-                        <v-text-field label="ป้ายทะเบียน"></v-text-field>
-                        <v-textarea label="หมายเหตุ"></v-textarea>
+                        <v-text-field label="ชื่อ" v-model="newCustomerName"></v-text-field>
+                        <v-text-field label="นามสกุล" v-model="newCustomerSurname"></v-text-field>
+                        <v-text-field label="จำนวนไมล์" v-model="miles"></v-text-field>
+                        <v-text-field label="ป้ายทะเบียน" v-model="licensePlate"></v-text-field>
+                        <v-textarea label="หมายเหตุ" v-model="note"></v-textarea>
                     </v-col>
                 </v-row>
             </v-container>
@@ -49,21 +50,73 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Sidebar from '@/components/Sidebar.vue';
+import { data } from 'autoprefixer';
+
 export default {
     components: {
         Sidebar
     },
     data() {
     return {
+      date: '',
       selectedOption: null,
-      textFields: [{ storage: '', price: '', quantity: '' }],
+      textFields: [{ proID: '', price: '', amount: '' }],
+      customerName: '',
+      newCustomerName: '',
+      newCustomerSurname: '',
+      miles: '',
+      licensePlate: '',
+      note: '',
+      oldCustomer: [],
+      empName: 'Captain'
     };
   },
   methods: {
     addTextField() {
-        this.textFields.push({ storage: '', price: '', quantity: '' });
+        this.textFields.push({ proID: '', price: '', amount: '' });
+    },
+    async submit() {
+        console.log(this.textFields[0])
+        console.log(this.date)
+        if(this.selectedOption === "newCus"){
+            axios.post('http://localhost:3000/customer',{
+            fname: this.newCustomerName,
+            lname: this.newCustomerSurname,
+            mile: this.miles,
+            licensePlate: this.licensePlate,
+        })
+        }
+        await axios.post('http://localhost:3000/saleOrder', {
+            orderDate: this.date,
+            product: this.textFields,
+            // customerType: this.selectedOption,
+            cusName: this.selectedOption === 'oldCus' ? this.customerName : this.newCustomerName,
+            empName: this.empName,
+            // customerSurname: this.newCustomerSurname,
+            // miles: this.miles,
+            // licensePlate: this.licensePlate,
+            note: this.note
+        })
+        .then((res) => {
+            console.log(res.status)
+        })
+        .catch((error) => {
+            console.log(error.status)
+        })
+    },
+    async getOldCus() {
+        try {
+            const response = await axios.get('http://localhost:3000/customer/all');
+            this.oldCustomer = response.data.data;
+        } catch (error) {
+            console.error('Error fetching old customers:', error);
+        }
     }
+  },
+  async mounted() {
+    await this.getOldCus();
   }
 }
 </script>
