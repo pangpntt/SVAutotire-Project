@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b" v-for="(item, index) in filteredItems" :key="index" value="item.ID">
+          <tr class="bg-white border-b" v-for="(item, index) in items" :key="index" value="item.ID">
             <td class="px-7 py-4">
               {{ item.fname }}
               <div v-if="editMode && index === editItemIndex">
@@ -78,13 +78,13 @@ import axios from 'axios';
         items: [],
       };
     },
-    computed: {
-      filteredItems() {
-        return this.currentWarehouse && this.currentWarehouse !== 'All'
-          ? this.items.filter(item => item.fname === this.currentWarehouse && item.fname.toLowerCase().includes(this.searchItem.toLowerCase()))
-          : this.items.filter(item => item.fname.toLowerCase().includes(this.searchItem.toLowerCase()));
-      },
-    },
+    // computed: {
+    //   filteredItems() {
+    //     return this.currentWarehouse && this.currentWarehouse !== 'All'
+    //       ? this.items.filter(item => item.fname === this.currentWarehouse && item.fname.toLowerCase().includes(this.searchItem.toLowerCase()))
+    //       : this.items.filter(item => item.fname.toLowerCase().includes(this.searchItem.toLowerCase()));
+    //   },
+    // },
     methods: {
       editItem(index) {
         this.editMode = true;
