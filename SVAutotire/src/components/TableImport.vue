@@ -60,7 +60,7 @@ computed: {
 },
 methods: {
     async getProduct() {
-      const productData = await axios.get('http://localhost:3000/')
+      const productData = await axios.get('http://13.213.12.136:3000/')
       // console.log(productData.data.data.Items[0])
       this.items = productData.data.data.Items
     }

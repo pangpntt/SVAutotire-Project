@@ -101,7 +101,7 @@ export default {
     submit() {
         // axios.post('http://localhost:3000/employee')
         console.log(this.form.role)
-        axios.post('http://localhost:3000/employee',{
+        axios.post('http://13.213.12.136:3000/employee',{
             fname: this.form.fname,
             lname: this.form.lname,
             tel: this.form.tel,

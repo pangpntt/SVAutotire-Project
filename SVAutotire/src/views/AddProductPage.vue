@@ -76,7 +76,7 @@ export default {
     },
     methods: {
         async getWarehouse() {
-            const warehouse = await axios.get('http://localhost:3000/warehouse/all')
+            const warehouse = await axios.get('http://13.213.12.136:3000/warehouse/all')
             // console.log(warehouse)
             this.items = warehouse.data.data.Items
         },
@@ -84,7 +84,7 @@ export default {
         return this.filteredStorage.map(storage => storage.name);
         },
         async submit() {
-            await axios.post('http://localhost:3000/product/', {
+            await axios.post('http://13.213.12.136:3000/product/', {
                 proID: this.proID,
                 name: this.name,
                 price: this.price,

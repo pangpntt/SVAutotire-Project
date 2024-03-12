@@ -50,7 +50,7 @@ export default {
   methods: {
     submit() {
       axios
-        .post("http://localhost:3000/warehouse", {
+        .post("http://13.213.12.136:3000/warehouse", {
           name: this.form.name,
         })
         .then((res) => {
