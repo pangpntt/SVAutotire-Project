@@ -110,6 +110,8 @@ export default {
         try {
             const response = await axios.get('http://13.213.12.136:3000/customer/all');
             this.oldCustomer = response.data.data;
+            this.$swal('เพิ่มคำสั่งซื้อเสร็จสิ้น');
+            this.$router.push({ path: '/order' });
         } catch (error) {
             console.error('Error fetching old customers:', error);
         }

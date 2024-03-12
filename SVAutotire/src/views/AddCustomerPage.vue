@@ -88,6 +88,8 @@ export default {
         })
         .then((res) => {
             console.log(res.status)
+            this.$swal('เพิ่มข้อมูลลูกค้าเสร็จสิ้น');
+            this.$router.push({ path: '/customer' });
         })
         .catch((error) => {
             console.log(error.status)

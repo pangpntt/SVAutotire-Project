@@ -66,6 +66,8 @@ export default {
             await axios.post(`http://13.213.12.136:3000/warehouse/storage/${select.ID}`, {
                storage: storage
             })
+            this.$swal('เพิ่มที่เก็บเสร็จสิ้น');
+            this.$router.push({ path: '/warehouse' });
 
         }
     },

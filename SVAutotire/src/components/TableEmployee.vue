@@ -112,8 +112,10 @@
       },
 
       async deleteItem(index) {
+        const result = window.confirm("Are you sure?");
         console.log(this.items[index].ID)
         await axios.delete(`http://13.213.12.136:3000/employee/delete/${this.items[index].ID}`)
+        alert("ข้อมูลพนักงานถูกลบ");
         this.items.splice(index, 1);
       },
 

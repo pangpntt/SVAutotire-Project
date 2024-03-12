@@ -86,9 +86,11 @@ export default {
       this.editedItem = {};
     },
     async deleteItem(index) {
+      const result = window.confirm("Are you sure?");
       try {
         const deleteWh = await axios.delete(`http://13.213.12.136:3000/warehouse/delete/${this.items[index].ID}`);
         this.items.splice(index, 1);
+        alert("สินค้าถูกลบ");
         return deleteWh.status
       } catch (error) {
         return error.status
