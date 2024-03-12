@@ -55,6 +55,8 @@ export default {
         })
         .then((res) => {
           console.log(res.status);
+          this.$swal('เพิ่มคลังสินค้าเสร็จสิ้น');
+          this.$router.push({ path: '/warehouse' });
         })
         .catch((error) => {
           console.log(error.status);
