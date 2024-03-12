@@ -24,14 +24,29 @@
 <script>
 import axios from 'axios'
 export default {
-    items: [
-        {
-            type: 'ล้อ',
-            id: "A123",
-            company: 'kmitl',
-            amount: '100'
-        }
-    ]
+data() {
+  return {
+    searchItemName: '',
+    items: [],
+  };
+},
+computed: {
+  // filteredItems() {
+  //   return this.items.filter(item => {
+  //     return item.customerName.toLowerCase().includes(this.searchItemName.toLowerCase())
+  //   })
+  // }
+},
+methods: {
+    async getProduct() {
+      const productData = await axios.get('http://13.213.12.136:3000/')
+      // console.log(productData.data.data.Items[0])
+      this.items = productData.data.data.Items
+    }
+},
+async getProduct() {
+  await this.getProduct();
+}
 }
 </script>
 

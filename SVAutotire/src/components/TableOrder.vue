@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     async getOrder() {
-      const order = await axios.get('http://localhost:3000/saleOrder/all');
+      const order = await axios.get('http://13.213.12.136:3000/saleOrder/all');
       this.items = order.data.data
 
       // console.log(this.items[0])

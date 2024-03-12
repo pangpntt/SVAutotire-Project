@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     submit() {
-        axios.post('http://localhost:3000/customer',{
+        axios.post('http://13.213.12.136:3000/customer',{
             fname: this.form.fname,
             lname: this.form.lname,
             mile: this.form.mile,

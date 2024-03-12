@@ -54,7 +54,7 @@ export default {
 } ,
   methods: {
     async getWarehouse() {
-      const warehouse = await axios.get('http://localhost:3000/warehouse/all')
+      const warehouse = await axios.get('http://13.213.12.136:3000/warehouse/all')
       console.log(warehouse.data.data.Items[0].storage)
       this.items = warehouse.data.data.Items
     }

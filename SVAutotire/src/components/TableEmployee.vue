@@ -100,7 +100,7 @@
       async saveItem(index) {
         this.items[index] = { ...this.editedItem };
         try {
-          const res = await axios.put(`http://localhost:3000/employee/edit/${this.items[index].ID}`, this.editedItem);
+          const res = await axios.put(`http://13.213.12.136:3000/employee/edit/${this.items[index].ID}`, this.editedItem);
           console.log(res.status);
         } 
         catch (error) {
@@ -113,12 +113,12 @@
 
       async deleteItem(index) {
         console.log(this.items[index].ID)
-        await axios.delete(`http://localhost:3000/employee/delete/${this.items[index].ID}`)
+        await axios.delete(`http://13.213.12.136:3000/employee/delete/${this.items[index].ID}`)
         this.items.splice(index, 1);
       },
 
       async getEmployee() {
-        const empData = await axios.get('http://localhost:3000/employee/all')
+        const empData = await axios.get('http://13.213.12.136:3000/employee/all')
         console.log(empData)
         this.items = empData.data.data
         console.log(this.items)
