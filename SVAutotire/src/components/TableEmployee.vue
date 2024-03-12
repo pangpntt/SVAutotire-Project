@@ -73,6 +73,7 @@
   
   <script>
   import axios from 'axios'
+  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
   export default {
     data() {
       return {
@@ -120,7 +121,10 @@
       },
 
       async getEmployee() {
-        const empData = await axios.get('http://13.213.12.136:3000/employee/all')
+        const empData = await axios.get('http://localhost:3000/employee/all',
+
+        )
+        // const empData = await axios.get('http://13.213.12.136:3000/employee/all')
         console.log(empData)
         this.items = empData.data.data
         console.log(this.items)

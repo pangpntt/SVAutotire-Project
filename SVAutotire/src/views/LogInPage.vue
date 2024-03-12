@@ -35,12 +35,13 @@ export default {
     },
     methods: {
         submit() {
-            axios.post('http://localhost:3000/',{
-            // axios.post('http://13.213.12.136:3000/', {
+            // axios.post('http://localhost:3000/',{
+            axios.post('http://13.213.12.136:3000/', {
                 username: this.username,
                 password: this.password
             })
             .then((res) => {
+                console.log(res)
                 if(res.status == 'error'){
 
                 }else{
