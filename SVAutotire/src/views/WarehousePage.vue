@@ -8,23 +8,20 @@
         <router-link to="/warehouse/manage" class="items-center p-3 mb-5 border-solid rounded-md bg-emerald-500 text-white text-sm">
             <span>จัดการคลังสินค้า</span>
         </router-link>
-        <div class="grid grid-cols-2 gap-4 place-content-stretch h-48 mt-5 mb-5">
-            <div class="border-2 border-cyan-900 rounded-md text-center">
-                <div class="justify-center">
-                    <p class="text-base">สินค้าทั้งหมด</p>
-                    <p>{{}}</p>
-                    <p>ชิ้น</p>
-                </div>
-            </div>
-            <div class="border-2 border-cyan-900 rounded-md text-center" v-for="(item, index) in items" :key="index" value="item.ID">
-                <div>
-                    <p>{{item.name}}</p>
-                    <p>{{item.amount}}</p>
-                    <p>ชิ้น</p>
+        <div>
+            <div class="grid grid-cols-2 gap-4  mt-5 mb-5">
+            <div class="border bg-emerald-800 rounded-md text-center" v-for="(item, index) in items" :key="index" value="item.ID">
+                <div class="">
+                    <p class="text-white text-xl pb-3 pt-3">{{item.name}}</p>
+                    <p class="text-white text-5xl pb-3">{{item.amount}}</p>
+                    <p class="text-white text-base pb-3">ชิ้น</p>
                 </div>
             </div>
         </div>
-        <TableProductWarehouse/>
+            <div>
+                <TableProductWarehouse/>
+            </div>
+        </div>
     </div>
 
 </template>
