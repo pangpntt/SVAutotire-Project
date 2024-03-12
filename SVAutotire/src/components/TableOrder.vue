@@ -63,13 +63,14 @@ export default {
   methods: {
     async getOrder() {
       const order = await axios.get('http://localhost:3000/saleOrder/all');
-      console.log(order.data.data)
       this.items = order.data.data
+
       // console.log(this.items[0])
     }
   },
   async mounted() {
     await this.getOrder();
+    console.log(this.items)
   }
 }
 </script>
