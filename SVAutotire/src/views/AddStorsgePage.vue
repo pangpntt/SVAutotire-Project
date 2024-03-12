@@ -48,7 +48,7 @@ export default {
   },
   methods: {
         async getWarehouse() {
-            const warehouse = await axios.get('http://localhost:3000/warehouse/all')
+            const warehouse = await axios.get('http://13.213.12.136:3000/warehouse/all')
             // console.log(warehouse.data.data.Items[0])
             this.items = warehouse.data.data.Items
         },
@@ -63,7 +63,7 @@ export default {
                     name: this.textFields[i]
                 }
             }
-            await axios.post(`http://localhost:3000/warehouse/storage/${select.ID}`, {
+            await axios.post(`http://13.213.12.136:3000/warehouse/storage/${select.ID}`, {
                storage: storage
             })
 

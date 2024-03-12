@@ -81,14 +81,14 @@ export default {
         console.log(this.textFields[0])
         console.log(this.date)
         if(this.selectedOption === "newCus"){
-            axios.post('http://localhost:3000/customer',{
+            axios.post('http://13.213.12.136:3000/customer',{
             fname: this.newCustomerName,
             lname: this.newCustomerSurname,
             mile: this.miles,
             licensePlate: this.licensePlate,
         })
         }
-        await axios.post('http://localhost:3000/saleOrder', {
+        await axios.post('http://13.213.12.136:3000/saleOrder', {
             orderDate: this.date,
             product: this.textFields,
             // customerType: this.selectedOption,
@@ -108,7 +108,7 @@ export default {
     },
     async getOldCus() {
         try {
-            const response = await axios.get('http://localhost:3000/customer/all');
+            const response = await axios.get('http://13.213.12.136:3000/customer/all');
             this.oldCustomer = response.data.data;
         } catch (error) {
             console.error('Error fetching old customers:', error);

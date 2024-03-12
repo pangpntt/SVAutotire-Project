@@ -110,7 +110,7 @@ export default {
       this.items[index] = { ...this.editedItem };
 
       try {
-        await axios.put(`http://localhost:3000/product/edit/${this.items[index].proID}`, this.editedItem)
+        await axios.put(`http://13.213.12.136:3000/product/edit/${this.items[index].proID}`, this.editedItem)
       }
       catch (error) {
         console.log(error)
@@ -120,13 +120,13 @@ export default {
       this.editedItem = {};
     },
     async deleteItem(index) {
-      await axios.delete(`http://localhost:3000/product/delete/${this.items[index].proID}`)
+      await axios.delete(`http://13.213.12.136:3000/product/delete/${this.items[index].proID}`)
       console.log(this.items)
       this.items.splice(index, 1);
       
     },
     async getProduct() {
-      const productData = await axios.get('http://localhost:3000/product/all')
+      const productData = await axios.get('http://13.213.12.136:3000/product/all')
       // console.log(productData.data.data.Items[0])
       this.items = productData.data.data.Items
     }

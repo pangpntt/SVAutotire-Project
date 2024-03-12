@@ -94,7 +94,7 @@ import axios from 'axios';
       async saveItem(index) {
         this.items[index] = { ...this.editedItem };
         try {
-          await axios.put(`http://localhost:3000/customer/edit/${this.items[index].ID}`, this.editedItem)
+          await axios.put(`http://13.213.12.136:3000/customer/edit/${this.items[index].ID}`, this.editedItem)
         }
         catch (error) {
           console.log(error)
@@ -104,11 +104,11 @@ import axios from 'axios';
         this.editedItem = {};
       },
       async deleteItem(index) {
-        await axios.delete(`http://localhost:3000/customer/delete/${this.items[index].ID}`)
+        await axios.delete(`http://13.213.12.136:3000/customer/delete/${this.items[index].ID}`)
         this.items.splice(index, 1);
       },
       async getCustomer() {
-        const cusData = await axios.get('http://localhost:3000/customer/all')
+        const cusData = await axios.get('http://13.213.12.136:3000/customer/all')
         console.log(cusData)
         this.items = cusData.data.data
       }

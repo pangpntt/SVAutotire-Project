@@ -76,7 +76,7 @@ export default {
         name: this.editedItem.name
       }
       try{
-        const res = await axios.put(`http://localhost:3000/warehouse/edit/name/${this.items[index].ID}`, editName);
+        const res = await axios.put(`http://13.213.12.136:3000/warehouse/edit/name/${this.items[index].ID}`, editName);
         console.log(res.status);
       }catch(error){
         console.log(error);
@@ -87,7 +87,7 @@ export default {
     },
     async deleteItem(index) {
       try {
-        const deleteWh = await axios.delete(`http://localhost:3000/warehouse/delete/${this.items[index].ID}`);
+        const deleteWh = await axios.delete(`http://13.213.12.136:3000/warehouse/delete/${this.items[index].ID}`);
         this.items.splice(index, 1);
         return deleteWh.status
       } catch (error) {
@@ -95,7 +95,7 @@ export default {
       }
     },
     async getWarehouse() {
-      const warehouse = await axios.get('http://localhost:3000/warehouse/all');
+      const warehouse = await axios.get('http://13.213.12.136:3000/warehouse/all');
       this.items = warehouse.data.data.Items
     }
   },
