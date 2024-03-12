@@ -8,7 +8,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
           </svg>
         </div>
-        <input v-model="searchItem" type="text" id="table-search-users" class="block p-2 ps-10 mx-4 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50" placeholder="ค้นหาชื่อลูกค้า">
+        <input v-model="searchItem" type="text" id="table-search-users" class="block p-2 ps-10 mx-4 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50" placeholder="ค้นหารหัสสินค้า">
       </div>
     </div>
     <table class="w-full text-left rtl:text-right text-gray-500 ">
@@ -108,8 +108,9 @@ export default {
     },
     async saveItem(index) {
       this.items[index] = { ...this.editedItem };
+
       try {
-        await axios.put(`http://localhost:3000/product/edit/${this.items[index].ID}`, this.editedItem)
+        await axios.put(`http://localhost:3000/product/edit/${this.items[index].proID}`, this.editedItem)
       }
       catch (error) {
         console.log(error)
@@ -122,6 +123,7 @@ export default {
       await axios.delete(`http://localhost:3000/product/delete/${this.items[index].proID}`)
       console.log(this.items)
       this.items.splice(index, 1);
+      
     },
     async getProduct() {
       const productData = await axios.get('http://localhost:3000/product/all')

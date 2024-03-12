@@ -22,9 +22,9 @@
                     <v-col col="12" md="4">
                         <v-text-field label="จำนวน" v-model="amount"></v-text-field>
                     </v-col>
-                    <v-col col="12" md="4">
+                    <!-- <v-col col="12" md="4">
                         <v-file-input label="อัพโหลดภาพสินค้า" accept="image/*" v-model="image"></v-file-input>
-                    </v-col>
+                    </v-col> -->
                     <v-col col="12" md="6">
                         <v-select label="คลังสินค้า" :items="items.map(item => item.name)" return-object v-model="selectedWarehouse"></v-select>
                     </v-col>
@@ -96,6 +96,8 @@ export default {
             })
             .then((res) => {
                 console.log(res.status)
+                this.$swal('เพิ่มสินค้าเสร็จสิ้น');
+                this.$router.push({ path: '/product' });
             })
             .catch((error) => {
                 console.log(error.status)
