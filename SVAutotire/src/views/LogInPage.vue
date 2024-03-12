@@ -44,7 +44,7 @@ export default {
                 if(res.status == 'error'){
 
                 }else{
-                    localStorage.setItem('token', res.data);
+                    localStorage.setItem('token', res.data.data);
                     this.$router.push({ path: '/product' });
                 }
 

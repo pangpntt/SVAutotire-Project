@@ -82,11 +82,11 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
-      searchItem: '',
+      searchItem: "",
       editMode: false,
       editItemIndex: null,
       editedItem: {},
@@ -110,33 +110,48 @@ export default {
       this.items[index] = { ...this.editedItem };
 
       try {
-        await axios.put(`http://13.213.12.136:3000/product/edit/${this.items[index].proID}`, this.editedItem)
-      }
-      catch (error) {
-        console.log(error)
+        await axios.put(
+          `http://13.213.12.136:3000/product/edit/${this.items[index].proID}`,
+          this.editedItem
+        );
+      } catch (error) {
+        console.log(error);
       }
       this.editMode = false;
       this.editItemIndex = null;
       this.editedItem = {};
     },
-    async deleteItem(index) {
-      await axios.delete(`http://13.213.12.136:3000/product/delete/${this.items[index].proID}`)
-      console.log(this.items)
-      this.items.splice(index, 1);
-      
+    deleteItem(index) {
+      console.log(this.items);
+      const result = window.confirm("Are you sure?");
+      if (result) {
+        axios
+          .delete(
+            `http://13.213.12.136:3000/product/delete/${this.items[index].proID}`
+          )
+          .then(() => {
+            alert("สินค้าถูกลบ");
+            this.items.splice(index, 1);
+          })
+          .catch((error) => {
+            console.error("Error deleting item:", error);
+            alert("An error occurred while deleting the item.");
+          });
+      }
     },
     async getProduct() {
-      const productData = await axios.get('http://13.213.12.136:3000/product/all')
+      const productData = await axios.get(
+        "http://13.213.12.136:3000/product/all"
+      );
       // console.log(productData.data.data.Items[0])
-      this.items = productData.data.data.Items
-    }
+      this.items = productData.data.data.Items;
+    },
   },
   async mounted() {
-    await this.getProduct()
-  }
-}
+    await this.getProduct();
+  },
+};
 </script>
 
 <style lang="">
-    
 </style>

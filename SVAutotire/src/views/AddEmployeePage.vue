@@ -111,6 +111,8 @@ export default {
         })
         .then((res) => {
             console.log(res.status)
+            this.$swal('เพิ่มข้อมูลพนักงานเสร็จสิ้น');
+            this.$router.push({ path: '/employee' });
         })
         .catch((error) => {
             console.log(error.status)

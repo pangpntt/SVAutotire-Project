@@ -104,7 +104,9 @@ import axios from 'axios';
         this.editedItem = {};
       },
       async deleteItem(index) {
+        const result = window.confirm("Are you sure?");
         await axios.delete(`http://13.213.12.136:3000/customer/delete/${this.items[index].ID}`)
+        alert("ข้อมูลลูกค้าถูกลบ");
         this.items.splice(index, 1);
       },
       async getCustomer() {
