@@ -121,7 +121,7 @@
       },
 
       async getEmployee() {
-        const empData = await axios.get('http://localhost:3000/employee/all',
+        const empData = await axios.get('http://13.213.12.136:3000/employee/all',
 
         )
         // const empData = await axios.get('http://13.213.12.136:3000/employee/all')

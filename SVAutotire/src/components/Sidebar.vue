@@ -84,7 +84,7 @@ export default {
       // Logout logic here
       localStorage.removeItem('token'); // Example: Remove token from local storage
       // Redirect to login page or similar action
-      window.location.href = '/';
+      window.location.href = '';
     },
   }
 }
